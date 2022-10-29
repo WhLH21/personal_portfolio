@@ -1,0 +1,29 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+    <h1>Its a blog!</h1>
+
+    <h2>Dinislam has written {{ blogs.count }} blog{{ blogs.count|pluralize}}</h2>
+
+    {% for blog in blogs %}
+
+    <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+
+    <p>{{ blog.description|striptags|truncatechars:120 }}</p>
+
+    <h5>{{ blog.date|date:'M d Y'}}</h5>
+
+    {% if blog.image %}
+
+    <img src= "{{ blog.image.url }}" height=250, width=250>
+
+    {% endif %}
+
+    {% if blog.url %}
+
+    <a href= "{{ blog.url }}">LINK</a>
+
+    {% endif %}
+
+    {% endfor %}
+{% endblock %}

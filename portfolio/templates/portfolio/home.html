@@ -1,0 +1,30 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    <h1>Dinislam's portfolio</h1>
+
+
+    {% load static %}
+
+    <a href="{% url 'blog:all_blogs' %}"><h1>Blogs</h1></a>
+    <br>
+    <a href="{% static 'portfolio/Физика_лаб.1-17_(5516).pdf' %}">LABORATORY</a>
+    <br>
+    <img src="{% static 'portfolio/1565932109_art-tjan-56.jpg' %}" height="250" width=250>
+
+
+
+    {% for project in projects %}
+
+    <h2>{{ project.title }}</h2>
+
+    <p>{{ project.description }}</p>
+
+    <img src= "{{ project.image.url }}" height=250, width=250>
+    {% if project.url %}
+    <a href= "{{ project.url }}">LINK</a>
+    {% endif %}
+
+    {% endfor %}
+    
+{% endblock %}
